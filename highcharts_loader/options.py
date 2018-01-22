@@ -4,6 +4,10 @@ from .exceptions import EmptyParams, ToManyParams
 
 
 class Options:
+    """
+        Take chart options from dict or from json file.
+        All available options you can find in official documentation https://www.highcharts.com/docs
+    """
     data = {}
 
     def __init__(self, *, from_file=None, from_dict=None):

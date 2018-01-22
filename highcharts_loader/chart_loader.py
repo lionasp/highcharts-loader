@@ -5,11 +5,18 @@ import requests
 
 
 class ChartLoader:
+    """
+        Take Options object and load chart from highcharts API in specified format.
+    """
     raw_chart_data = None
     url = 'http://export.highcharts.com/'
     image_type = None
 
     def __init__(self, options, image_type='image/png'):
+        """
+        :param options: Options object
+        :param image_type: Available types: image/png, image/jpeg, image/svg+xml, application/pdf
+        """
         self.image_type = image_type
         response = requests.post(self.url, data={
             'type': image_type,
@@ -24,6 +31,7 @@ class ChartLoader:
         return b64encode(self.raw_chart_data).decode()
 
     def get_data_image(self):
+        """ Return string for embedded to <img> tag. """
         return 'data:image/{0};charset=utf-8;base64,{1}'.format(self.image_type, self._decoded_chart())
 
     def get_raw_data(self):
