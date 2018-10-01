@@ -1,7 +1,7 @@
 highcharts-loader
 =================
 
-It is a small library that can load charts from highcharts on server side. 
+It is a small library that can load charts from [highcharts](http://highcharts.com/) on server side. 
 After loading chart you can save it to file or embed it into your html page in base64 format. 
 
 ```python
@@ -13,7 +13,7 @@ chart = ChartLoader(options)
 chart.save_to_file('result.png')
 ```
 
-options.json example:
+*options.json* example:
 ```json
 {
     "chart": {
@@ -35,3 +35,11 @@ options.json example:
 Result:
 
 ![result](https://raw.githubusercontent.com/lionasp/highcharts-loader/master/result.png)
+
+You can find more option params on [highcharts official documentation page](https://api.highcharts.com/highcharts/)
+
+
+## todo
+* Add directory with examples
+* Install from github with pip
+* Add docker container for run own server rather than relying on the public export.highcharts.com server which is rate limited.
