@@ -5,7 +5,8 @@ It is a small library that can load charts from [highcharts](http://highcharts.c
 After loading chart you can save it to file or embed it into your html page in base64 format. 
 
 ```python
-from highcharts_loader import ChartLoader, Options
+from highcharts_loader.chart_loader import ChartLoader
+from highcharts_loader.options import Options
 
 options = Options(from_file='options.json')
 chart = ChartLoader(options)
@@ -38,8 +39,11 @@ Result:
 
 You can find more option params on [highcharts official documentation page](https://api.highcharts.com/highcharts/)
 
+## Installation
+```bash
+pip install git+git://github.com/lionasp/highcharts-loader/@master
+```
 
 ## todo
 * Add directory with examples
-* Install from github with pip
 * Add docker container for run own server rather than relying on the public export.highcharts.com server which is rate limited.
