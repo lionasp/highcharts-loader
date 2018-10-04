@@ -45,5 +45,4 @@ pip install git+git://github.com/lionasp/highcharts-loader/@master
 ```
 
 ## todo
-* Add directory with examples
 * Add docker container for run own server rather than relying on the public export.highcharts.com server which is rate limited.
