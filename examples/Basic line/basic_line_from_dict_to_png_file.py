@@ -1,5 +1,4 @@
-from highcharts_loader.chart_loader import ChartLoader
-from highcharts_loader.options import Options
+from highcharts_loader import ChartLoader, Options
 
 chart_options = {
     'title': {
