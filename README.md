@@ -5,8 +5,7 @@ It is a small library that can load charts from [highcharts](http://highcharts.c
 After loading chart you can save it to file or embed it into your html page in base64 format. 
 
 ```python
-from highcharts_loader.chart_loader import ChartLoader
-from highcharts_loader.options import Options
+from highcharts_loader import ChartLoader, Options
 
 options = Options(from_file='options.json')
 chart = ChartLoader(options)
