@@ -2,5 +2,5 @@ class EmptyParams(Exception):
     pass
 
 
-class ToManyParams(Exception):
+class TooManyParams(Exception):
     pass
