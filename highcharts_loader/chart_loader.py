@@ -9,19 +9,21 @@ class ChartLoader:
         Take Options object and load chart from highcharts API in specified format.
     """
     raw_chart_data = None
-    url = 'http://export.highcharts.com/'
     image_type = None
 
-    def __init__(self, options, image_type='image/png'):
+    def __init__(self, options, image_type='image/png', url='http://export.highcharts.com/'):
         """
         :param options: Options object
         :param image_type: Available types: image/png, image/jpeg, image/svg+xml, application/pdf
         """
+        self.url = url
         self.image_type = image_type
+
         response = requests.post(self.url, data={
             'type': image_type,
             'options': json.dumps(options.data)
         })
+
         if response.status_code == requests.codes.ok:
             self.raw_chart_data = response.content
         else:

@@ -43,5 +43,34 @@ You can find more option params on [highcharts official documentation page](http
 pip install git+git://github.com/lionasp/highcharts-loader/@master
 ```
 
+## Unlimited usage
+For unlimited usage you should to run own server rather than relying on the public 
+export.highcharts.com server which is rate limited. You can use solution from this 
+[repo](https://github.com/ONSdigital/highcharts-export-docker)
+
+**How to use:**
+
+1. Run export server with docker
+
+   * Without docker-compose (run next command in terminal for expose the service on port 8080):
+    ```bash
+    docker run -d --name highcharts -p 8080:8080 onsdigital/highcharts-export-node
+    ```
+
+   * With docker-compose (paste next command to docker-compose.yml file):
+    
+    ```yml
+    highcharts:
+        image: onsdigital/highcharts-export-docker
+        ports:
+          - "8080"
+    
+    ```
+    
+2. Send url param to ChartLoader instance
+    ```python
+    chart = ChartLoader(options, url='http://localhost:8080')
+    ```
+
 ## todo
-* Add docker container for run own server rather than relying on the public export.highcharts.com server which is rate limited.
+* Add tests
