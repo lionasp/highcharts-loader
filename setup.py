@@ -8,7 +8,7 @@ setup(
         'highcharts_loader'
     ],
     install_requires=[
-        'requests==2.19.1'
+        'requests==2.20.0'
     ],
     author='Vitalii Pugach',
     author_email='lion.programmer@gmail.com',
