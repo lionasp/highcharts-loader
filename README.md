@@ -74,3 +74,4 @@ export.highcharts.com server which is rate limited. You can use solution from th
 
 ## todo
 * Add tests
+* Add typing
