@@ -2,6 +2,9 @@ import json
 from base64 import b64encode
 
 import urllib.request
+import urllib.error
+
+from .exceptions import HTTPError, SaveFileError
 
 
 class ChartLoader:
@@ -33,7 +36,10 @@ class ChartLoader:
 
         data = json.dumps(data).encode('utf-8')
 
-        response = urllib.request.urlopen(req, data)
+        try:
+            response = urllib.request.urlopen(req, data)
+        except (urllib.error.HTTPError, urllib.error.URLError) as e:
+            raise HTTPError(e)
         self.raw_chart_data = response.read()
 
     def _decoded_chart(self):
@@ -47,6 +53,9 @@ class ChartLoader:
         return self.raw_chart_data
 
     def save_to_file(self, path):
-        f = open(path, 'wb+')
+        try:
+            f = open(path, 'wb+')
+        except OSError as e:
+            raise SaveFileError(e)
         f.write(self.raw_chart_data)
         f.close()
