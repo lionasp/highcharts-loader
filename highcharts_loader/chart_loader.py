@@ -1,7 +1,7 @@
 import json
 from base64 import b64encode
 
-import requests
+import urllib.request
 
 
 class ChartLoader:
@@ -16,18 +16,25 @@ class ChartLoader:
         :param options: Options object
         :param image_type: Available types: image/png, image/jpeg, image/svg+xml, application/pdf
         """
-        self.url = url
         self.image_type = image_type
 
-        response = requests.post(self.url, data={
-            'type': image_type,
-            'options': json.dumps(options.data)
-        })
+        req = urllib.request.Request(url)
 
-        if response.status_code == requests.codes.ok:
-            self.raw_chart_data = response.content
-        else:
-            response.raise_for_status()
+        req.add_header('Content-Type', 'application/json; charset=utf-8')
+        req.add_header('User-Agent', 'python-urllib')
+        req.add_header('Accept-Encoding', 'gzip, deflate')
+        req.add_header('Accept', '*/*')
+        req.add_header('Connection', 'keep-alive')
+
+        data = {
+            'type': image_type,
+            'options': options.data
+        }
+
+        data = json.dumps(data).encode('utf-8')
+
+        response = urllib.request.urlopen(req, data)
+        self.raw_chart_data = response.read()
 
     def _decoded_chart(self):
         return b64encode(self.raw_chart_data).decode()
