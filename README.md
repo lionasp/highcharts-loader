@@ -43,6 +43,9 @@ You can find more option params on [highcharts official documentation page](http
 pip install git+git://github.com/lionasp/highcharts-loader/@master
 ```
 
+### Requirements
+- Python (3.5, 3.6, 3.7)
+
 ## Unlimited usage
 For unlimited usage you should to run own server rather than relying on the public 
 export.highcharts.com server which is rate limited. You can use solution from this 
@@ -74,4 +77,3 @@ export.highcharts.com server which is rate limited. You can use solution from th
 
 ## todo
 * Add tests
-* Add typing
