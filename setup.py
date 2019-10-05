@@ -7,9 +7,7 @@ setup(
     packages=[
         'highcharts_loader'
     ],
-    install_requires=[
-        'requests==2.20.0'
-    ],
+    install_requires=[],
     author='Vitalii Pugach',
     author_email='lion.programmer@gmail.com',
     url='https://github.com/lionasp/highcharts-loader',
