@@ -17,3 +17,7 @@ class HTTPError(HighChartsLoaderError):
 
 class SaveFileError(HighChartsLoaderError):
     pass
+
+
+class ReadFileError(HighChartsLoaderError):
+    pass

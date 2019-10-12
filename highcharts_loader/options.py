@@ -1,7 +1,7 @@
 import json
 from typing import Optional, Dict, Any
 
-from .exceptions import EmptyParams, TooManyParams
+from .exceptions import EmptyParams, TooManyParams, ReadFileError
 
 
 class Options:
@@ -16,4 +16,22 @@ class Options:
         if from_file and from_dict:
             raise TooManyParams('You have to pass only one parameter: "from_file" or "from_dict".')
 
-        self.data: Dict[str, Any] = json.loads(open(from_file).read()) if from_file else from_dict
+        self._from_file = from_file
+        self._from_dict = from_dict
+        self._data = None
+
+    @property
+    def data(self) -> Optional[Dict[str, Any]]:
+        if self._data is None:
+            self._data = self._init_data()
+        return self._data
+
+    def _init_data(self) -> Dict[str, Any]:
+        if self._from_dict:
+            return self._from_dict
+
+        try:
+            with open(self._from_file) as f:
+                return json.loads(f.read())
+        except (OSError, json.JSONDecodeError) as e:
+            raise ReadFileError(e)
